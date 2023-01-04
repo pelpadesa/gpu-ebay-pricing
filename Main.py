@@ -14,9 +14,10 @@ class Listing:
         price = price.replace("$", "").replace(",", "")
         return int(price)
 class GPU:
-    def __init__(self, ModelName: str) -> None:
+    def __init__(self, ModelName: str, Coordinates: list) -> None:
         self.ModelName = ModelName
         self.Listings = []
+        self.Coordinates = Coordinates
     def GetAveragePrice(self):
         price = 0
         for listing in self.Listings:
@@ -57,7 +58,12 @@ def LoadGPUs():
     jsonData = json.loads(open("GPUs.json", "r").read())
     for gpu in jsonData:
         gpuObj = GPU(
-            ModelName = gpu
+            ModelName = gpu,
+            Coordinates = [
+                jsonData[gpu].get("1080p"),
+                jsonData[gpu].get("1440p"),
+                jsonData[gpu].get("4K")
+            ]
         )
         gpus.append(gpuObj)
     return gpus
@@ -71,4 +77,5 @@ if __name__ == "__main__":
     gpus = LoadGPUs()
     for gpu in gpus:
         gpu.GrabListings()
+        print(f"Completed: {gpu.ModelName} | Average Price: {gpu.GetAveragePrice()}")
     WriteData(gpus)
