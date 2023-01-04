@@ -1,0 +1,4 @@
+datetime
+pillow
+bs4
+requests
