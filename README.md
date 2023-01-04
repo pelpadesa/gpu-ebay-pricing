@@ -7,3 +7,5 @@
 3. Run Main.py
 
 After completion, three images will be created in the `output` folder with prices next to GPU names.
+
+Optionally, you can modify Main.py to fit desired behavior. Most notably, writing pricing data to a .csv file using `GPUs.py`'s `WriteData()` function.
