@@ -47,9 +47,14 @@ class GPU:
                 Subtitle = item.select_one("div > div.s-item__info.clearfix > div.s-item__subtitle"),
                 Price = listingPrice.text
             )
+            
             _title = listingTitle.text.lower()
-            if "nvlink" in _title or "sli bridge" in _title or "parts" in _title or "repair" in _title or "block" in _title or "description" in _title or "faulty" in _title or " for " in _title or "only" in _title or "as is" in _title or "not working" in _title or "box" in _title:
+            for phrase in ["nvlink", "sli bridge", "parts", "repair", "block", "description", "faulty", " for ", "only", "as is", "not working", "box", "*for "]:
+                if phrase in _title:
+                    break
+            if phrase in _title: # This is either really neat or really overcomplicated
                 continue
+            
             self.Listings.append(gpuListing)
         time.sleep(0.2)
 
