@@ -9,3 +9,5 @@
 After completion, three images will be created in the `output` folder with prices next to GPU names.
 
 Optionally, you can modify Main.py to fit desired behavior. Most notably, writing pricing data to a .csv file using `GPUs.py`'s `WriteData()` function.
+## Example Result: 
+![USA_1080](https://user-images.githubusercontent.com/117033048/210757463-9fd70c42-28fa-41e0-b10a-75bf32c0d557.png)
