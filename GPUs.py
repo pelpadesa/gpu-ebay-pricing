@@ -48,12 +48,6 @@ class GPU:
                 continue
             if listingPrice is None:
                 continue
-
-            gpuListing = Listing(
-                Title = listingTitle.text,
-                Price = listingPrice.text,
-                listingCurrency = Currency
-            )
             
             _title = listingTitle.text.lower()
             for phrase in ["nvlink", "sli bridge", "parts", "repair", "block", "description", "faulty", " for ", "only", "as is", "not working", "box", "*for "]:
@@ -61,6 +55,12 @@ class GPU:
                     break
             if phrase in _title: # This is either really neat or really overcomplicated
                 continue
+
+            gpuListing = Listing(
+                Title = listingTitle.text,
+                Price = listingPrice.text,
+                listingCurrency = Currency
+            )
             
             self.Listings.append(gpuListing)
         time.sleep(0.2)
