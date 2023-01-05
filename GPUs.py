@@ -11,7 +11,10 @@ class Listing:
     def SetPrice(self, price: str):
         # $1,900.00
         price = price.split(".")[0] if "." in price else price
-        price = price.replace(self.Currency, "").replace(",", "")
+        if self.Currency in price:
+            price = price.replace(self.Currency, "").replace(",", "")
+        else: 
+            price = price.split(" ")[1].replace(",", "") # Ex. "GBP 625" instead of £625
         return int(price)
 class GPU:
     def __init__(self, ModelName: str, Coordinates: list) -> None:
@@ -24,6 +27,13 @@ class GPU:
             price += listing.Price
         price = price / len(self.Listings)
         return price
+    def GetLowestPrice(self):
+        currentPrice = 9999999
+        for listing in self.Listings:
+            if listing.Price < currentPrice:
+                # Only get the lowest priced listing if it's above 70% the average price, else it could be bad data or not representative.
+                currentPrice = listing.Price if (self.GetAveragePrice() / 1.3) < listing.Price else currentPrice
+        return currentPrice
     def GrabListings(self, region: str = "USA"):
         with open("./bin/Regions.json") as regionFile:
             region = json.loads(regionFile.read()).get(region.upper())
