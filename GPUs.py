@@ -68,8 +68,7 @@ class GPU:
 
             gpuListing = Listing(
                 Title = listingTitle.text,
-                Price = listingPrice.text,
-                listingCurrency = Currency
+                Price = listingPrice.text
             )
             
             self.Listings.append(gpuListing)
