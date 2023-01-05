@@ -4,18 +4,18 @@ import requests
 import time
 
 class Listing:
-    def __init__(self, Title, Price, listingCurrency) -> None:
+    def __init__(self, Title, Price) -> None:
         self.Title = Title
-        self.Currency = listingCurrency.replace("Â", "") if "Â" in listingCurrency else listingCurrency # Encoding issues
         self.Price = self.SetPrice(Price)
     def SetPrice(self, price: str):
         # $1,900.00
         price = price.split(".")[0] if "." in price else price
-        if self.Currency in price:
-            price = price.replace(self.Currency, "").replace(",", "")
-        else: 
-            price = price.split(" ")[1].replace(",", "") # Ex. "GBP 625" instead of £625
-        return int(price)
+
+        price_ = ""
+        for char in price:
+            if char in ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]:
+                price_ += char
+        return int(price_)
 class GPU:
     def __init__(self, ModelName: str, Coordinates: list) -> None:
         self.ModelName = ModelName
