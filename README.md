@@ -1,5 +1,5 @@
 # GPU-Ebay-Pricing
-* Automated eBay listing & price averaging
+* Automated eBay listing scraping & price averaging
 * Automated plotting of data to existing TomsHardware performance graphs (1080p, 1440p, 4K)
 ## How to Use
 1. Clone the repository
