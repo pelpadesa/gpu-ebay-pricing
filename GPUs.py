@@ -4,14 +4,14 @@ import requests
 import time
 
 class Listing:
-    def __init__(self, Title, Subtitle, Price) -> None:
+    def __init__(self, Title, Price, listingCurrency) -> None:
         self.Title = Title
-        self.Subtitle = Subtitle
+        self.Currency = listingCurrency.replace("Â", "") if "Â" in listingCurrency else listingCurrency # Encoding issues
         self.Price = self.SetPrice(Price)
     def SetPrice(self, price: str):
         # $1,900.00
         price = price.split(".")[0] if "." in price else price
-        price = price.replace("$", "").replace(",", "")
+        price = price.replace(self.Currency, "").replace(",", "")
         return int(price)
 class GPU:
     def __init__(self, ModelName: str, Coordinates: list) -> None:
@@ -24,19 +24,26 @@ class GPU:
             price += listing.Price
         price = price / len(self.Listings)
         return price
-    def GrabListings(self):
+    def GrabListings(self, region: str = "USA"):
+        with open("./bin/Regions.json") as regionFile:
+            region = json.loads(regionFile.read()).get(region.upper())
+        listings_Selector = region.get("listings")
+        listing_Title = region.get("listingTitle")
+        listing_Price = region.get("listingPrice")
+        Currency = region.get("Currency")
+        requestURL = region.get("URL_Part1") + self.ModelName + region.get("URL_Part2")
+        
         headers = {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
         }
-        url = f"https://www.ebay.com/sch/i.html?_from=R40&_nkw=\"{self.ModelName}\"&_sacat=0&rt=nc&LH_Sold=1&LH_Complete=1"
         soup = BeautifulSoup(
-            requests.get(url, headers=headers).text,
+            requests.get(requestURL, headers=headers).text,
             features='lxml'
         )
-        listings = soup.select("#srp-river-results > ul > li")
+        listings = soup.select(listings_Selector)
         for item in listings:
-            listingTitle = item.select_one("div > div.s-item__info.clearfix > a > div > span")
-            listingPrice = item.select_one("div > div.s-item__info.clearfix > div.s-item__details.clearfix > div:nth-child(1) > span > span")
+            listingTitle = item.select_one(listing_Title)
+            listingPrice = item.select_one(listing_Price)
             if listingTitle is None:
                 continue
             if listingPrice is None:
@@ -44,8 +51,8 @@ class GPU:
 
             gpuListing = Listing(
                 Title = listingTitle.text,
-                Subtitle = item.select_one("div > div.s-item__info.clearfix > div.s-item__subtitle"),
-                Price = listingPrice.text
+                Price = listingPrice.text,
+                listingCurrency = Currency
             )
             
             _title = listingTitle.text.lower()
