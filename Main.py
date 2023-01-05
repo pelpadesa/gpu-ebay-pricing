@@ -4,13 +4,13 @@ from GPUs import LoadGPUs
 
 gpus = LoadGPUs()
 
-fhdImage = Image.open('1080.png')
+fhdImage = Image.open('./bin/1080.png')
 fhdImage_Draw = ImageDraw.Draw(fhdImage)
 
-qhdImage = Image.open('1440.png')
+qhdImage = Image.open('./bin/1440.png')
 qhdImage_Draw = ImageDraw.Draw(qhdImage)
 
-fourKImage = Image.open('4K.png')
+fourKImage = Image.open('./bin/4K.png')
 fourKImage_Draw = ImageDraw.Draw(fourKImage)
 
 priceFont = ImageFont.truetype("segoeui.ttf", 16)

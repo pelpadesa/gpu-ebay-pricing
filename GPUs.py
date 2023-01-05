@@ -60,7 +60,7 @@ class GPU:
 
 def LoadGPUs():
     gpus = []
-    jsonData = json.loads(open("GPUs.json", "r").read())
+    jsonData = json.loads(open("./bin/GPUs.json", "r").read())
     for gpu in jsonData:
         gpuObj = GPU(
             ModelName = gpu,
@@ -74,6 +74,6 @@ def LoadGPUs():
     return gpus
 
 def WriteData_CSV(gpus: list):
-    with open("pricing_data.csv", "w+") as dataFile:
+    with open("./pricing_data.csv", "w+") as dataFile:
         for gpu in gpus:
             dataFile.write(f"{gpu.ModelName},{gpu.GetAveragePrice()}\n")
