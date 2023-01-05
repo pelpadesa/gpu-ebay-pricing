@@ -16,8 +16,8 @@ fourKImage_Draw = ImageDraw.Draw(fourKImage)
 priceFont = ImageFont.truetype("segoeui.ttf", 16)
 titleFont = ImageFont.truetype("segoeuib.ttf", 48)
 
-REGION = "USA"
-CURRENCY = "$"
+REGION = "CA"
+CURRENCY = "C$"
 
 for gpu in gpus:
     gpu.GrabListings(region=REGION)
