@@ -26,5 +26,12 @@
         "listings": "#srp-river-results > ul > li",
         "listingTitle": "div > div.s-item__info.clearfix > a > div > span",
         "listingPrice": "div > div.s-item__info.clearfix > div.s-item__details.clearfix > div:nth-child(1) > span > span"
+    },
+    "DE": {
+        "URL_Part1": "https://www.ebay.de/sch/i.html?_from=R40&_nkw=\"",
+        "URL_Part2": "\"&_sacat=0&rt=nc&LH_Sold=1&LH_Complete=1",
+        "listings": "#srp-river-results > ul > li",
+        "listingTitle": "div > div.s-item__info.clearfix > a > div > span",
+        "listingPrice": "div > div.s-item__info.clearfix > div.s-item__details.clearfix > div:nth-child(1) > span > span"
     }
 }

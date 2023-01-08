@@ -2,6 +2,7 @@ import json
 from bs4 import BeautifulSoup
 import requests
 import time
+import re
 
 class Listing:
     def __init__(self, Title, Price) -> None:
@@ -9,8 +10,12 @@ class Listing:
         self.Price = self.SetPrice(Price)
     def SetPrice(self, price: str):
         # $1,900.00
-        price = price.split(".")[0] if "." in price else price
-
+        price = price.split(".")[0] if "." in price and "EUR" not in price else price
+        matches = re.findall(pattern="\\,\\d{2}(?!\\d)", string=price)
+        if len(matches) > 0:
+            for match in matches:
+                price = price.replace(match, "")
+                price.replace(".", "")
         price_ = ""
         for char in price:
             if char in ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]:
