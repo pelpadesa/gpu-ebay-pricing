@@ -37,7 +37,7 @@ class GPU:
         for listing in self.Listings:
             if listing.Price < currentPrice:
                 # Only get the lowest priced listing if it's above 70% the average price, else it could be bad data or not representative.
-                currentPrice = listing.Price if (self.GetAveragePrice() / 1.3) < listing.Price else currentPrice
+                currentPrice = listing.Price if (self.GetAveragePrice() * 0.7) < listing.Price else currentPrice
         return currentPrice
     def GrabListings(self, region: str = "USA"):
         with open("./bin/Regions.json") as regionFile:
