@@ -45,7 +45,6 @@ class GPU:
         listings_Selector = region.get("listings")
         listing_Title = region.get("listingTitle")
         listing_Price = region.get("listingPrice")
-        Currency = region.get("Currency")
         requestURL = region.get("URL_Part1") + self.ModelName + region.get("URL_Part2")
         
         headers = {
