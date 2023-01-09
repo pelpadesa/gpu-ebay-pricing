@@ -76,7 +76,7 @@ class GPU:
             )
             
             self.Listings.append(gpuListing)
-        time.sleep(0.2)
+        time.sleep(0.3)
 
 def LoadGPUs():
     gpus = []

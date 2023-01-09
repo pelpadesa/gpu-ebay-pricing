@@ -4,7 +4,7 @@ from GPUs import LoadGPUs
 
 gpus = LoadGPUs()
 
-priceFont = ImageFont.truetype("segoeui.ttf", 16)
+priceFont = ImageFont.truetype("segoeui.ttf", 18)
 titleFont = ImageFont.truetype("segoeuib.ttf", 48)
 
 def GenerateGraphs(region: str, currency: str):
@@ -21,7 +21,7 @@ def GenerateGraphs(region: str, currency: str):
         region = region.upper()
         
         if gpu.Coordinates[0] == "" or gpu.Coordinates[0] is None:
-            print(f"{gpu.ModelName} | A123verage Price: {currency}{gpu.GetAveragePrice()}")
+            print(f"{gpu.ModelName} | Average Price: {currency}{gpu.GetAveragePrice()}")
             continue
         fhdImage_Draw.text((int(gpu.Coordinates[0].split(",")[0]), int(gpu.Coordinates[0].split(",")[1])), f"{currency}{round(gpu.GetAveragePrice())}", fill=(255, 0, 0), font=priceFont)
         
@@ -35,22 +35,21 @@ def GenerateGraphs(region: str, currency: str):
             continue
         fourKImage_Draw.text((int(gpu.Coordinates[2].split(",")[0]), int(gpu.Coordinates[2].split(",")[1])), f"{currency}{round(gpu.GetAveragePrice())}", fill=(255, 0, 0), font=priceFont)
         print(f"{gpu.ModelName} | Average Price: {currency}{gpu.GetAveragePrice()}")
-    
-        now = datetime.datetime.now()
-        currentDateStr = now.strftime(f"%B %d, %Y")
+    now = datetime.datetime.now()
+    currentDateStr = now.strftime(f"%B %d, %Y")
 
-        fourKImage_Draw.text((670, 250), f"{region} Ebay Pricing", fill=(255, 0, 0), font=titleFont)
-        fourKImage_Draw.text((915, 305), currentDateStr, fill=(255, 0, 0), font=priceFont)
+    fourKImage_Draw.text((870, 250), f"{region} Ebay Pricing", fill=(255, 0, 0), font=titleFont)
+    fourKImage_Draw.text((1015, 305), currentDateStr, fill=(255, 0, 0), font=priceFont)
 
-        fhdImage_Draw.text((670, 250), f"{region} Ebay Pricing", fill=(255, 0, 0), font=titleFont)
-        fhdImage_Draw.text((915, 305), currentDateStr, fill=(255, 0, 0), font=priceFont)
+    fhdImage_Draw.text((870, 250), f"{region} Ebay Pricing", fill=(255, 0, 0), font=titleFont)
+    fhdImage_Draw.text((1015, 305), currentDateStr, fill=(255, 0, 0), font=priceFont)
     
-        qhdImage_Draw.text((742, 250), f"{region} Ebay Pricing", fill=(255, 0, 0), font=titleFont)
-        qhdImage_Draw.text((987, 305), currentDateStr, fill=(255, 0, 0), font=priceFont)
+    qhdImage_Draw.text((872, 250), f"{region} Ebay Pricing", fill=(255, 0, 0), font=titleFont)
+    qhdImage_Draw.text((1017, 305), currentDateStr, fill=(255, 0, 0), font=priceFont)
     
-        fhdImage.save(f'./{region}_1080.png')
-        qhdImage.save(f'./{region}_1440.png')
-        fourKImage.save(f'./{region}_4K.png')
+    fhdImage.save(f'./{region}_1080.png')
+    qhdImage.save(f'./{region}_1440.png')
+    fourKImage.save(f'./{region}_4K.png')
 
 
 if __name__ == "__main__":
