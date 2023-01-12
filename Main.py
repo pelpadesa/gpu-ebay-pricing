@@ -35,15 +35,24 @@ def GenerateGraphs(region: str, currency: str, darkMode: bool = False):
         
         if gpu.Coordinates[0] == "" or gpu.Coordinates[0] is None:
             continue
-        fhdImage_Draw.text((int(gpu.Coordinates[0].split(",")[0]), int(gpu.Coordinates[0].split(",")[1])), f"{currency}{round(gpu.GetAveragePrice())}", fill=(255, 0, 0), font=priceFont)
+        fhdImage_Draw.text(
+            (int(gpu.Coordinates[0].split(",")[0]), int(gpu.Coordinates[0].split(",")[1])),
+            f"{currency}{round(gpu.GetAveragePrice())}", fill=(255, 0, 0), font=priceFont
+        )
         
         if gpu.Coordinates[1] == "" or gpu.Coordinates[1] is None:
             continue
-        qhdImage_Draw.text((int(gpu.Coordinates[1].split(",")[0]), int(gpu.Coordinates[1].split(",")[1])), f"{currency}{round(gpu.GetAveragePrice())}", fill=(255, 0, 0), font=priceFont)
+        qhdImage_Draw.text(
+            (int(gpu.Coordinates[1].split(",")[0]), int(gpu.Coordinates[1].split(",")[1])),
+            f"{currency}{round(gpu.GetAveragePrice())}", fill=(255, 0, 0), font=priceFont
+        )
         
         if gpu.Coordinates[2] == "" or gpu.Coordinates[2] is None:
             continue
-        fourKImage_Draw.text((int(gpu.Coordinates[2].split(",")[0]), int(gpu.Coordinates[2].split(",")[1])), f"{currency}{round(gpu.GetAveragePrice())}", fill=(255, 0, 0), font=priceFont)
+        fourKImage_Draw.text(
+            (int(gpu.Coordinates[2].split(",")[0]), int(gpu.Coordinates[2].split(",")[1])),
+            f"{currency}{round(gpu.GetAveragePrice())}", fill=(255, 0, 0), font=priceFont
+        )
     now = datetime.datetime.now()
     currentDateStr = now.strftime(f"%B %d, %Y")
 
