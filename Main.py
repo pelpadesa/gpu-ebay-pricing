@@ -29,9 +29,12 @@ def GenerateGraphs(region: str, currency: str, darkMode: bool = False):
     qhdImage_Draw = ImageDraw.Draw(qhdImage)
     fourKImage_Draw = ImageDraw.Draw(fourKImage)
 
-    for gpu in tqdm.tqdm(gpus, desc=f"{region} eBay Prices", position=0, leave=True):
+    progressBar = tqdm.tqdm(total = len(gpus), unit="GPU")
+    for gpu in gpus:
+        progressBar.set_description(desc=f"{region: >3} eBay Prices | {gpu.ModelName: <16}")
         gpu.GrabListings(region=region)
         region = region.upper()
+        progressBar.update(1)
         
         if gpu.Coordinates[0] == "" or gpu.Coordinates[0] is None:
             continue
@@ -78,6 +81,8 @@ def GenerateGraphs(region: str, currency: str, darkMode: bool = False):
     qhdImage.save(f'./{region}_1440.png')
     fourKImage.save(f'./{region}_4K.png')
 
+    progressBar.set_description(desc=f"{region: >3} eBay Prices | Complete!       ")
+    progressBar.close()
 
 if __name__ == "__main__":
     GenerateGraphs("USA", "$", darkMode=True) # Region name from ./bin/Regions.json entries
