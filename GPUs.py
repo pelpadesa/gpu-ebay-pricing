@@ -20,6 +20,7 @@ class Listing:
         for char in price:
             if char in ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]:
                 price_ += char
+        if price_ == '': price_ = 0
         return int(price_)
 class GPU:
     def __init__(self, ModelName: str, Coordinates: list) -> None:
@@ -36,12 +37,12 @@ class GPU:
         currentPrice = 9999999
         for listing in self.Listings:
             if listing.Price < currentPrice:
-                # Only get the lowest priced listing if it's above 70% the average price, else it could be bad data or not representative.
-                currentPrice = listing.Price if (self.GetAveragePrice() * 0.7) < listing.Price else currentPrice
+                # Only get the lowest priced listing if it's above 30% the average price, else it could be bad data or not representative.
+                currentPrice = listing.Price if (self.GetAveragePrice() * 0.3) < listing.Price else currentPrice
         return currentPrice
-    def GrabListings(self, region: str = "USA"):
+    def GrabListings(self, region: str = "USA Ebay"):
         with open("./bin/Regions.json") as regionFile:
-            region = json.loads(regionFile.read()).get(region.upper())
+            region = json.loads(regionFile.read()).get(region)
         listings_Selector = region.get("listings")
         listing_Title = region.get("listingTitle")
         listing_Price = region.get("listingPrice")
@@ -70,6 +71,16 @@ class GPU:
             if phrase in _title: # This is either really neat or really overcomplicated
                 continue
 
+            topSeller = item.select_one(".item-action > .item-sellers.top-seller > span > div > div > span")
+            for seller in ["LHYU's Marketplace Store", "YunxiSupermarket"]:
+                if topSeller is not None and seller in topSeller.text:
+                    break
+            if topSeller is not None and seller in topSeller.text:
+                continue
+
+            if self.ModelName.lower() not in listingTitle.text.lower():
+                continue
+            
             gpuListing = Listing(
                 Title = listingTitle.text,
                 Price = listingPrice.text

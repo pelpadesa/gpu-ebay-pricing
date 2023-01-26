@@ -1,37 +1,44 @@
 {
-    "USA": {
+    "USA Ebay": {
         "URL_Part1": "https://www.ebay.com/sch/i.html?_from=R40&_nkw=\"",
         "URL_Part2": "\"&_sacat=0&rt=nc&LH_Sold=1&LH_Complete=1",
         "listings": "#srp-river-results > ul > li",
         "listingTitle": "div > div.s-item__info.clearfix > a > div > span",
         "listingPrice": "div > div.s-item__info.clearfix > div.s-item__details.clearfix > div:nth-child(1) > span > span"
     },
-    "UK": {
+    "UK Ebay": {
         "URL_Part1": "https://www.ebay.co.uk/sch/i.html?_from=R40&_nkw=\"",
         "URL_Part2": "\"&_sacat=0&LH_TitleDesc=0&LH_PrefLoc=2&rt=nc&LH_Sold=1&LH_Complete=1",
         "listings": "#srp-river-results > ul > li",
         "listingTitle": "div > div.s-item__info.clearfix > a > div > span",
         "listingPrice": "div > div.s-item__info.clearfix > div.s-item__details.clearfix > div:nth-child(1) > span > span"
     },
-    "CA": {
+    "CA Ebay": {
         "URL_Part1": "https://www.ebay.ca/sch/i.html?_from=R40&_nkw=\"",
         "URL_Part2": "\"&_sacat=0&LH_PrefLoc=2&rt=nc&LH_Sold=1&LH_Complete=1",
         "listings": "#srp-river-results > ul > li",
         "listingTitle": "div > div.s-item__info.clearfix > a > div > span",
         "listingPrice": "div > div.s-item__info.clearfix > div.s-item__details.clearfix > div:nth-child(1) > span > span"
     },
-    "AU": {
+    "AU Ebay": {
         "URL_Part1": "https://www.ebay.com.au/sch/i.html?_from=R40&_nkw=\"",
         "URL_Part2": "\"&_sacat=0&LH_TitleDesc=0&LH_PrefLoc=2&rt=nc&LH_Sold=1&LH_Complete=1",
         "listings": "#srp-river-results > ul > li",
         "listingTitle": "div > div.s-item__info.clearfix > a > div > span",
         "listingPrice": "div > div.s-item__info.clearfix > div.s-item__details.clearfix > div:nth-child(1) > span > span"
     },
-    "DE": {
+    "DE Ebay": {
         "URL_Part1": "https://www.ebay.de/sch/i.html?_from=R40&_nkw=\"",
         "URL_Part2": "\"&_sacat=0&rt=nc&LH_Sold=1&LH_Complete=1",
         "listings": "#srp-river-results > ul > li",
         "listingTitle": "div > div.s-item__info.clearfix > a > div > span",
         "listingPrice": "div > div.s-item__info.clearfix > div.s-item__details.clearfix > div:nth-child(1) > span > span"
+    },
+    "USA Newegg": {
+        "URL_Part1": "https://www.newegg.com/p/pl?d=\"",
+        "URL_Part2": "\"&N=4814%204131",
+        "listings": "#app > div.page-content > section > div > div > div.row-body > div > div > div > div.row-body > div.row-body-inner > div > div.item-cells-wrap.border-cells.items-grid-view.four-cells.expulsion-one-cell > .item-cell",
+        "listingTitle": ".item-info > .item-title",
+        "listingPrice": ".item-action > ul > li.price-current > strong"
     }
 }

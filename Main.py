@@ -31,43 +31,42 @@ def GenerateGraphs(region: str, currency: str, darkMode: bool = False):
 
     progressBar = tqdm.tqdm(total = len(gpus), unit="GPU")
     for gpu in gpus:
-        progressBar.set_description(desc=f"{region: >3} eBay Prices | {gpu.ModelName: <16}")
+        progressBar.set_description(desc=f"{region: >3} Prices | {gpu.ModelName: <16}")
         gpu.GrabListings(region=region)
-        region = region.upper()
         progressBar.update(1)
         
         if gpu.Coordinates[0] == "" or gpu.Coordinates[0] is None:
             continue
         fhdImage_Draw.text(
             (int(gpu.Coordinates[0].split(",")[0]), int(gpu.Coordinates[0].split(",")[1])),
-            f"{currency}{round(gpu.GetAveragePrice())}", fill=(255, 0, 0), font=priceFont
+            f"{currency}{round(gpu.GetLowestPrice())}", fill=(255, 0, 0), font=priceFont
         )
         
         if gpu.Coordinates[1] == "" or gpu.Coordinates[1] is None:
             continue
         qhdImage_Draw.text(
             (int(gpu.Coordinates[1].split(",")[0]), int(gpu.Coordinates[1].split(",")[1])),
-            f"{currency}{round(gpu.GetAveragePrice())}", fill=(255, 0, 0), font=priceFont
+            f"{currency}{round(gpu.GetLowestPrice())}", fill=(255, 0, 0), font=priceFont
         )
         
         if gpu.Coordinates[2] == "" or gpu.Coordinates[2] is None:
             continue
         fourKImage_Draw.text(
             (int(gpu.Coordinates[2].split(",")[0]), int(gpu.Coordinates[2].split(",")[1])),
-            f"{currency}{round(gpu.GetAveragePrice())}", fill=(255, 0, 0), font=priceFont
+            f"{currency}{round(gpu.GetLowestPrice())}", fill=(255, 0, 0), font=priceFont
         )
     now = datetime.datetime.now()
     currentDateStr = now.strftime(f"%B %d, %Y")
 
-    fourKImage_Draw.text((870, 250), f"{region} Ebay Pricing", fill=(255, 0, 0), font=titleFont)
+    fourKImage_Draw.text((870, 250), f"{region} Pricing", fill=(255, 0, 0), font=titleFont)
     fourKImage_Draw.text((1015, 305), currentDateStr, fill=(255, 0, 0), font=priceFont)
     fourKImage_Draw.text((110, 970), "No affiliation with TomsHardware (just using their performance graphs)", fill=(255, 0, 0), font=priceFont)
 
-    fhdImage_Draw.text((870, 250), f"{region} Ebay Pricing", fill=(255, 0, 0), font=titleFont)
+    fhdImage_Draw.text((870, 250), f"{region} Pricing", fill=(255, 0, 0), font=titleFont)
     fhdImage_Draw.text((1015, 305), currentDateStr, fill=(255, 0, 0), font=priceFont)
     fhdImage_Draw.text((110, 970), "No affiliation with TomsHardware (just using their performance graphs)", fill=(255, 0, 0), font=priceFont)
 
-    qhdImage_Draw.text((872, 250), f"{region} Ebay Pricing", fill=(255, 0, 0), font=titleFont)
+    qhdImage_Draw.text((872, 250), f"{region} Pricing", fill=(255, 0, 0), font=titleFont)
     qhdImage_Draw.text((1017, 305), currentDateStr, fill=(255, 0, 0), font=priceFont)
     qhdImage_Draw.text((110, 970), "No affiliation with TomsHardware (just using their performance graphs)", fill=(255, 0, 0), font=priceFont)
 
@@ -81,12 +80,8 @@ def GenerateGraphs(region: str, currency: str, darkMode: bool = False):
     qhdImage.save(f'./{region}_1440.png')
     fourKImage.save(f'./{region}_4K.png')
 
-    progressBar.set_description(desc=f"{region: >3} eBay Prices | Complete!       ")
+    progressBar.set_description(desc=f"{region: >3} Prices | Complete!       ")
     progressBar.close()
 
 if __name__ == "__main__":
-    GenerateGraphs("USA", "$", darkMode=True) # Region name from ./bin/Regions.json entries
-    GenerateGraphs("UK", "£") # Currency symbol is used only for the graphs, this can be whatever you want.
-    GenerateGraphs("CA", "C$")
-    GenerateGraphs("AU", "A$")
-    GenerateGraphs("DE", "€")
+    GenerateGraphs("USA Newegg", "$", darkMode=True) # Region name from ./bin/Regions.json entries 
