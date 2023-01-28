@@ -39,21 +39,21 @@ def GenerateGraphs(region: str, currency: str, darkMode: bool = False):
             continue
         fhdImage_Draw.text(
             (int(gpu.Coordinates[0].split(",")[0]), int(gpu.Coordinates[0].split(",")[1])),
-            f"{currency}{round(gpu.GetLowestPrice())}", fill=(255, 0, 0), font=priceFont
+            f"{currency}{round(gpu.GetAveragePrice())}", fill=(255, 0, 0), font=priceFont
         )
         
         if gpu.Coordinates[1] == "" or gpu.Coordinates[1] is None:
             continue
         qhdImage_Draw.text(
             (int(gpu.Coordinates[1].split(",")[0]), int(gpu.Coordinates[1].split(",")[1])),
-            f"{currency}{round(gpu.GetLowestPrice())}", fill=(255, 0, 0), font=priceFont
+            f"{currency}{round(gpu.GetAveragePrice())}", fill=(255, 0, 0), font=priceFont
         )
         
         if gpu.Coordinates[2] == "" or gpu.Coordinates[2] is None:
             continue
         fourKImage_Draw.text(
             (int(gpu.Coordinates[2].split(",")[0]), int(gpu.Coordinates[2].split(",")[1])),
-            f"{currency}{round(gpu.GetLowestPrice())}", fill=(255, 0, 0), font=priceFont
+            f"{currency}{round(gpu.GetAveragePrice())}", fill=(255, 0, 0), font=priceFont
         )
     now = datetime.datetime.now()
     currentDateStr = now.strftime(f"%B %d, %Y")
@@ -84,4 +84,4 @@ def GenerateGraphs(region: str, currency: str, darkMode: bool = False):
     progressBar.close()
 
 if __name__ == "__main__":
-    GenerateGraphs("USA Newegg", "$", darkMode=True) # Region name from ./bin/Regions.json entries 
+    GenerateGraphs("USA Ebay", "$", darkMode=True) # Region name from ./bin/Regions.json entries 
