@@ -65,7 +65,7 @@ class GPU:
                 continue
             
             _title = listingTitle.text.lower()
-            for phrase in ["nvlink", "sli bridge", "parts", "repair", "block", "description", "faulty", " for ", "only", "as is", "not working", "box", "*for ", "mining rig", "laptop", "desktop", "qty"]:
+            for phrase in ["nvlink", "sli bridge", "parts", "repair", "block", "description", "faulty", " for ", "only", "as is", "not working", "box", "*for ", "mining rig", "laptop", "desktop", "qty", "i3", "i5", "i7", "i9"]:
                 if phrase in _title:
                     break
             if phrase in _title: # This is either really neat or really overcomplicated
