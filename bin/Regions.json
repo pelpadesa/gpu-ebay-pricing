@@ -36,7 +36,7 @@
     },
     "USA Newegg": {
         "URL_Part1": "https://www.newegg.com/p/pl?d=\"",
-        "URL_Part2": "\"&N=4814%204131",
+        "URL_Part2": "\"&N=601406709%20600030348%20600100181%20100007709&ComboBundle=true",
         "listings": "#app > div.page-content > section > div > div > div.row-body > div > div > div > div.row-body > div.row-body-inner > div > div.item-cells-wrap.border-cells.items-grid-view.four-cells.expulsion-one-cell > .item-cell",
         "listingTitle": ".item-info > .item-title",
         "listingPrice": ".item-action > ul > li.price-current > strong"
