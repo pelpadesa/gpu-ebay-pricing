@@ -2,6 +2,7 @@ import datetime
 from PIL import Image, ImageDraw, ImageFont, ImageOps
 from GPUs import LoadGPUs, WriteData_CSV, GPU
 import tqdm
+from os import path
 
 gpus = LoadGPUs()
 
@@ -20,9 +21,9 @@ def _invertImage(image):
     return finalImage
     
 def _testCoordinates(gpus: list, gpuName: str):
-    fhdImage = Image.open('./bin/1080.png')
-    qhdImage = Image.open('./bin/1440.png')
-    fourKImage = Image.open('./bin/4K.png')
+    fhdImage = Image.open(f"{path.dirname(__file__)}/bin/1080.png")
+    qhdImage = Image.open(f"{path.dirname(__file__)}/bin/1440.png")
+    fourKImage = Image.open(f"{path.dirname(__file__)}/bin/4K.png")
 
     fhdImage_Draw = ImageDraw.Draw(fhdImage)
     qhdImage_Draw = ImageDraw.Draw(qhdImage)
@@ -65,15 +66,15 @@ def _testCoordinates(gpus: list, gpuName: str):
     qhdImage_Draw.text((1017, 305), currentDateStr, fill=(255, 0, 0), font=priceFont)
     qhdImage_Draw.text((110, 970), "No affiliation with TomsHardware (just using their performance graphs)", fill=(255, 0, 0), font=priceFont)
 
-    fhdImage.save(f'./Test_1080.png')
-    qhdImage.save(f'./Test_1440.png')
-    fourKImage.save(f'./Test_4K.png')
+    fhdImage.save(f"{path.dirname(__file__)}/Test_1080.png")
+    qhdImage.save(f"{path.dirname(__file__)}/Test_1440.png")
+    fourKImage.save(f"{path.dirname(__file__)}/Test_4K.png")
 
 
 def GenerateGraphs(region: str, currency: str, darkMode: bool = False):
-    fhdImage = Image.open('./bin/1080.png')
-    qhdImage = Image.open('./bin/1440.png')
-    fourKImage = Image.open('./bin/4K.png')
+    fhdImage = Image.open(f"{path.dirname(__file__)}/bin/1080.png")
+    qhdImage = Image.open(f"{path.dirname(__file__)}/bin/1440.png")
+    fourKImage = Image.open(f"{path.dirname(__file__)}/bin/4K.png")
 
     fhdImage_Draw = ImageDraw.Draw(fhdImage)
     qhdImage_Draw = ImageDraw.Draw(qhdImage)
@@ -126,9 +127,9 @@ def GenerateGraphs(region: str, currency: str, darkMode: bool = False):
         qhdImage = _invertImage(qhdImage)
         fourKImage = _invertImage(fourKImage)
 
-    fhdImage.save(f'./{region}_1080.png')
-    qhdImage.save(f'./{region}_1440.png')
-    fourKImage.save(f'./{region}_4K.png')
+    fhdImage.save(f"{path.dirname(__file__)}/{region}_1080.png")
+    qhdImage.save(f"{path.dirname(__file__)}/{region}_1440.png")
+    fourKImage.save(f"{path.dirname(__file__)}/{region}_4K.png")
 
     progressBar.set_description(desc=f"{region: >3} Prices | Complete!       ")
     progressBar.close()

@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 import requests
 import time
 import re
+from os import path
 
 class Listing:
     def __init__(self, Title, Price) -> None:
@@ -40,7 +41,7 @@ class GPU:
                 currentPrice = listing.Price if (self.GetAveragePrice() * 0.3) < listing.Price else currentPrice
         return currentPrice
     def GrabListings(self, region: str = "USA Ebay"):
-        with open("./bin/Regions.json") as regionFile:
+        with open(f"{path.dirname(__file__)}/bin/Regions.json") as regionFile:
             region = json.loads(regionFile.read()).get(region)
         listings_Selector = region.get("listings")
         listing_Title = region.get("listingTitle")
@@ -90,7 +91,7 @@ class GPU:
 
 def LoadGPUs():
     gpus = []
-    jsonData = json.loads(open("./bin/GPUs.json", "r").read())
+    jsonData = json.loads(open(f"{path.dirname(__file__)}/bin/GPUs.json", "r").read())
     for gpu in jsonData:
         gpuObj = GPU(
             ModelName = gpu,
