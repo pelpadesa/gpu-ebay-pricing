@@ -104,7 +104,10 @@ def LoadGPUs():
         gpus.append(gpuObj)
     return gpus
 
-def WriteData_CSV(gpus: list):
-    with open("./pricing_data.csv", "w+") as dataFile:
+def WriteData_CSV(gpus: list, filename: str = "pricing_data.csv", get_lowest: bool = False):
+    with open(f"./{filename}", "w+") as dataFile:
         for gpu in gpus:
-            dataFile.write(f"{gpu.ModelName},{gpu.GetAveragePrice()}\n")
+            if get_lowest:
+                dataFile.write(f"{gpu.ModelName},{gpu.GetLowestPrice()}\n")
+            else:
+                dataFile.write(f"{gpu.ModelName},{gpu.GetAveragePrice()}\n")
