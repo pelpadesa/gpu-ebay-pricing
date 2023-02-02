@@ -14,11 +14,10 @@ class Listing:
         matches = re.findall(pattern="\\,\\d{2}(?!\\d)", string=price)
         if len(matches) > 0:
             for match in matches:
-                price = price.replace(match, "")
-                price.replace(".", "")
+                price = price.replace(match, "").replace(".", "")
         price_ = ""
         for char in price:
-            if char in ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]:
+            if char.isdigit():
                 price_ += char
         if price_ == '': price_ = 0
         return int(price_)
