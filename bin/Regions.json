@@ -40,5 +40,12 @@
         "listings": "#app > div.page-content > section > div > div > div.row-body > div > div > div > div.row-body > div.row-body-inner > div > div.item-cells-wrap.border-cells.items-grid-view.four-cells.expulsion-one-cell > .item-cell",
         "listingTitle": ".item-info > .item-title",
         "listingPrice": ".item-action > ul > li.price-current > strong"
+    },
+    "CA Newegg": {
+        "URL_Part1": "https://www.newegg.ca/p/pl?d=\"",
+        "URL_Part2": "\"&N=600100181%20601406709%20600030348%20100007708&ComboBundle=true",
+        "listings": "#app > div.page-content > section > div > div > div.row-body > div > div > div > div.row-body > div.row-body-inner > div > div.item-cells-wrap.border-cells.items-grid-view.four-cells.expulsion-one-cell > .item-cell",
+        "listingTitle": ".item-info > .item-title",
+        "listingPrice": ".item-action > ul > li.price-current > strong"
     }
 }
