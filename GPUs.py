@@ -31,7 +31,7 @@ class GPU:
         price = 0
         for listing in self.Listings:
             price += listing.Price
-        price = price / len(self.Listings)
+        price = price / len(self.Listings) if len(self.Listings) != 0 else 0
         return price
     def GetLowestPrice(self):
         currentPrice = 9999999
