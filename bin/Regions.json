@@ -47,5 +47,13 @@
         "listings": "#app > div.page-content > section > div > div > div.row-body > div > div > div > div.row-body > div.row-body-inner > div > div.item-cells-wrap.border-cells.items-grid-view.four-cells.expulsion-one-cell > .item-cell",
         "listingTitle": ".item-info > .item-title",
         "listingPrice": ".item-action > ul > li.price-current > strong"
+    },
+    "US Amazon": {
+        "URL_Part1": "https://www.amazon.com/s?k=\"",
+        "URL_Part2": "\"&i=computers&rh=n%3A284822%2Cp_n_feature_browse-bin%3A23883927011%7C23883932011&dc&qid=1676656353&rnid=23883919011&ref=sr_nr_p_n_feature_browse-bin_1&ds=v1%3AF0U%2FLIw%2Fc%2BOoQK%2Fd64qbI97%2BzRc%2B1lrt30X56Z68BrQ",
+        "listings": "div.sg-col-20-of-24",
+        "listingTitle": "div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > h2:nth-child(1) > a:nth-child(1) > span:nth-child(1)",
+        "listingPrice": "div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(3) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > a:nth-child(1) > span:nth-child(1) > span:nth-child(2) > span:nth-child(2)",
+        "UseSelenium": true
     }
 }

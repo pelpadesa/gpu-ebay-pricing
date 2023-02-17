@@ -1,5 +1,6 @@
 import json
 from bs4 import BeautifulSoup
+from selenium import webdriver
 import requests
 import time
 import re
@@ -40,9 +41,11 @@ class GPU:
                 # Only get the lowest priced listing if it's above 30% the average price, else it could be bad data or not representative.
                 currentPrice = listing.Price if (self.GetAveragePrice() * 0.3) < listing.Price else currentPrice
         return currentPrice
-    def GrabListings(self, region: str = "USA Ebay"):
+    def GrabListings(self, region: str = "USA Ebay", driver: webdriver.Firefox = None):
+        region_ = region
         with open(f"{path.dirname(__file__)}/bin/Regions.json") as regionFile:
-            region = json.loads(regionFile.read()).get(region)
+            region = json.loads(regionFile.read()).get(region_)
+
         listings_Selector = region.get("listings")
         listing_Title = region.get("listingTitle")
         listing_Price = region.get("listingPrice")
@@ -51,8 +54,16 @@ class GPU:
         headers = {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
         }
+
+        if driver is not None:
+            driver.get(requestURL)
+            requestData = driver.page_source
+        else:
+            if region.get("UseSelenium") == True:
+                raise ValueError("Region '" + region_ + "' has UseSelenium set to true, but no driver was passed to GPU.GrabListings()")
+            requestData = requests.get(requestURL, headers=headers).text
         soup = BeautifulSoup(
-            requests.get(requestURL, headers=headers).text,
+            requestData,
             features='lxml'
         )
         listings = soup.select(listings_Selector)
@@ -63,7 +74,6 @@ class GPU:
                 continue
             if listingPrice is None:
                 continue
-            
             _title = listingTitle.text.lower()
             for phrase in ["nvlink", "sli bridge", "parts", "repair", "block", "description", "faulty", " for ", "only", "as is", "not working", "box", "*for ", "mining rig", "laptop", "desktop", "qty", "i3", "i5", "i7", "i9"]:
                 if phrase in _title:

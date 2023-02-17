@@ -1,6 +1,8 @@
 import datetime
 from PIL import Image, ImageDraw, ImageFont, ImageOps
 from GPUs import LoadGPUs, WriteData_CSV, GPU
+from selenium import webdriver
+from selenium.webdriver.firefox.service import Service
 import tqdm
 from os import path
 
@@ -71,7 +73,7 @@ def _testCoordinates(gpus: list, gpuName: str):
     fourKImage.save(f"{path.dirname(__file__)}/Test_4K.png")
 
 
-def GenerateGraphs(region: str, currency: str, darkMode: bool = False, getLowest: bool = False):
+def GenerateGraphs(region: str, currency: str, darkMode: bool = False, getLowest: bool = False, driver: webdriver.Firefox = None):
     fhdImage = Image.open(f"{path.dirname(__file__)}/bin/1080.png")
     qhdImage = Image.open(f"{path.dirname(__file__)}/bin/1440.png")
     fourKImage = Image.open(f"{path.dirname(__file__)}/bin/4K.png")
@@ -83,7 +85,7 @@ def GenerateGraphs(region: str, currency: str, darkMode: bool = False, getLowest
     progressBar = tqdm.tqdm(total = len(gpus), unit="GPU")
     for gpu in gpus:
         progressBar.set_description(desc=f"{region: >3} Prices | {gpu.ModelName: <16}")
-        gpu.GrabListings(region=region)
+        gpu.GrabListings(region=region, driver=driver)
         gpuPrice = gpu.GetLowestPrice() if getLowest else gpu.GetAveragePrice()
         progressBar.update(1)
         
@@ -136,4 +138,14 @@ def GenerateGraphs(region: str, currency: str, darkMode: bool = False, getLowest
     progressBar.close()
 
 if __name__ == "__main__":
-    GenerateGraphs("USA Ebay", "$", darkMode=True) # Region name from ./bin/Regions.json entries 
+    # Example of using a Selenium-required region, setup may vary.
+    # Requires geckodriver executable from Mozilla.
+    options = webdriver.FirefoxOptions()
+    options.binary_location = "C:\\Program Files\\Mozilla Firefox\\firefox.exe"
+    options.add_argument("-headless")
+    service = Service(executable_path=f"{path.dirname(__file__)}\\geckodriver.exe")
+    driver = webdriver.Firefox(service=service, options=options)
+
+    GenerateGraphs("US Amazon", "$", darkMode=True, driver=driver, getLowest=True) # Region name from ./bin/Regions.json entries 
+    
+    driver.quit()
