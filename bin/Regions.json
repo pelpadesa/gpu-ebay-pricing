@@ -55,5 +55,13 @@
         "listingTitle": "div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > h2:nth-child(1) > a:nth-child(1) > span:nth-child(1)",
         "listingPrice": "div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(3) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > a:nth-child(1) > span:nth-child(1) > span:nth-child(2) > span:nth-child(2)",
         "UseSelenium": true
+    },
+    "UK Amazon": {
+        "URL_Part1": "https://www.amazon.co.uk/s?k=\"",
+        "URL_Part2": "\"&i=computers&rh=n%3A430500031&dc&crid=P6D71N6ZOLP7&qid=1676667044&rnid=27399136031&sprefix=rtx+3050+%2Caps%2C174&ref=sr_nr_p_n_feature_thirteen_browse-bin_1&ds=v1%3AUEvHTbY5TxNRh9gy1pWYfcuP8lD1%2FRuYef9QgI2qCpU",
+        "listings": "div.sg-col-20-of-24",
+        "listingTitle": "div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > h2:nth-child(1) > a:nth-child(1) > span:nth-child(1)",
+        "listingPrice": "div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(3) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > a:nth-child(1) > span:nth-child(1) > span:nth-child(2) > span:nth-child(2)",
+        "UseSelenium": true
     }
 }
